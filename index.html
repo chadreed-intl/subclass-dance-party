@@ -18,48 +18,69 @@
       <span class="addDancerButton" data-dancer-maker-function-name="DubstepDancer">
       <a href="#">add a dub-stepdancer</a>
       </span>
+      <button class="lineUp">Line Dance?</button>
       <button class="turnDjOn">Party On?</button>
     </div>
     <div class ="djBooth"> 
-      <div class="speakersLeft speakersLeftOff"></div> 
       <div class="deadMaus deadMausOff"></div>
-      <div class="speakersRight speakersRightOff"></div> 
     </div>
     <div class ="partyRoom"></div>
 
     <script>
       $(document).ready(function(){
+        strober = {};
+        strober.startStrobing = function() {
+          console.log("starting the party");
+          this.strobing = true;
+          this.strobeThing = setInterval(function(){
+            var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            $('.partyRoom').css("background-color", randomColor);
+          }, 100);
+        };
+        strober.stopStrobing = function() {
+          clearInterval(this.strobeThing);
+          this.strobing = false;
+        }
+
         window.dancers = [];
 
         $(".addDancerButton").on("click", function(event){
-
           var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
-
           var dancerMakerFunction = window[dancerMakerFunctionName];
-
+          var farthestDistanceFromTop = $(".partyRoom").height() - $('.dancer').height();
+          var farthestDistanceFromleft = $('.partyRoom').width() - $('.dancer').width();
           var dancer = new dancerMakerFunction(
-            Math.random() * ($(".partyRoom").height()-25),
-            $(".partyRoom").width() * Math.random(),
+            Math.random() * farthestDistanceFromTop,
+            Math.random() * farthestDistanceFromleft,
             Math.random() * 2000
           );
           $('.partyRoom').append(dancer.$node);
+          window.dancers.push(dancer.$node);
         });
         
         $('.turnDjOn').click(function(){
           $('.deadMaus').toggleClass('deadMausOn');
-          $('.speakersLeft').toggleClass('speakersLeftOn');
-          $('.speakersRight').toggleClass('speakersRightOn');
+          $('.djBooth').toggleClass('on');
+          if (strober.strobing) {
+            strober.stopStrobing();
+          } else {
+            strober.startStrobing();
+          }
+        }).toggle(function(){
+          $(this).text('Party Off!');
+        }, function() {
+          $(this).text('Party On?');
+        });
 
-          var strobeColors = setInterval(function(){
-            var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-            $('.partyRoom').css("background-color", randomColor);
-          }, 100);
-
-          }).toggle(function(){
-            $(this).text('Party Off!');}, function() {
-              $(this).text('Party On?');
-          });
-      });
+        $('.lineUp').click(function(){
+          console.log(window.dancers);
+          var dancers = window.dancers;
+          for(var i= 0; i < dancers.length; i++){
+            // var setLineDancer = Dancer.prototype.setPosition;
+            // dancers[i].setLineDancer(200px, 200px);
+          }
+        });
+      });   
     </script>
 
   </body>

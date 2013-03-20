@@ -11,7 +11,7 @@ DubstepDancer.prototype.step = function(){
   
   this.$node.animate({
     backgroundSize: '160px',
-    left: '+=50'
+    left: '+=150',
   }, 3000);
     
 };
