@@ -19,9 +19,58 @@ body, a:link, a:visited, a:active{
 }
 .title{
   background-color: #777;
+  color: blue;
+  font-size: 20px;
+  font-weight: 800;
 }
 .dancer{
-  border:10px solid red;
-  border-radius:10px;
+  /*border:10px solid red;*/
+  /*border-radius:10px;*/
+  background: url('https://turntable.fm/roommanager_assets/avatars/23/fullfront.png') no-repeat;
+  height: 550px; 
+  width: 175px;
+  background-size: 100%;
   position:absolute;
+}
+
+.djBooth{
+  height: 15%;
+  width: 100%;
+  background-color: rgb(46, 51, 46);
+}
+  .speakersLeft{
+    /*background-image: url('./assets/speakers.gif');*/
+    width: 335px;
+    height: 100%;
+    float: left;
+  }
+  .deadMaus{
+    /*background-image: url('./assets/tumblr_m257rmP7jr1r6b9rbo1_500.gif');*/
+    height: 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+  }
+  .speakersRight{
+    /*background-image: url('./assets/speakers.gif');*/
+    width: 335px;
+    height: 100%;
+    float: right;
+    position: relative;
+    bottom: 141px;
+    margin-right: 0px;
+  }
+
+.partyRoom{
+  height: 85%;
+  background-color: rgb(174, 255, 236);
+}
+
+.deadMausOn{
+  background-image: url('./assets/tumblr_m257rmP7jr1r6b9rbo1_500.gif');
+}
+.speakersLeftOn{
+  background-image: url('./assets/speakers.gif');
+}
+.speakersRightOn{
+  background-image: url('./assets/speakers.gif');
 }
